@@ -1,115 +1,55 @@
-import { modules } from "../../data/mockData";
+const masterModules = [
+  { number: "01", title: "Intro a Trading" },
+  { number: "02", title: "Foundations Small Caps Market / Long vs Short Mechanics" },
+  { number: "03", title: "Stock Selection & Rutina de trading Profesional" },
+  { number: "04", title: "Abrir tu negocio de trading : Brokers , Cuenta & Business" },
+  { number: "05", title: "Análisis Fundamental (Small Caps)" },
+  { number: "06", title: "Análisis Técnico / Charts, Candles y Price Action" },
+  { number: "07", title: "Seteando Plataforma (DAS Trader Pro / Sage)" },
+  { number: "08", title: "Order Types / Poniendo Órdenes" },
+  { number: "09", title: "Quotes: Level 1 / Level 2 / Time & Sales" },
+  { number: "10", title: "Trading as a Pro / Big Picture" },
+];
 
 export default function Modules() {
-  const displayModules = modules.slice(0, 4);
-
   return (
-    <section id="modules" className="py-24 px-6 md:px-8 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-        <div className="space-y-4">
+    <section id="modules" className="py-24 px-6 md:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-16 space-y-4">
           <h2 className="text-sm font-bold tracking-[0.3em] text-primary uppercase">
             Estructura Curricular
           </h2>
-          <p className="text-4xl font-headline font-bold">
-            10 Módulos de Maestría
+          <p className="text-4xl md:text-5xl font-headline font-bold">
+            Módulos
+          </p>
+          <p className="text-on-surface-variant max-w-2xl mx-auto">
+            10 módulos diseñados para dominar el trading de small caps, desde
+            fundamentos hasta ejecución profesional.
           </p>
         </div>
-        <p className="text-on-surface-variant max-w-md">
-          Desde fundamentos hasta estrategias avanzadas de scalping y momentum,
-          diseñadas cronológicamente para tu evolución profesional.
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {displayModules.map((mod) => (
-          <div
-            key={mod.id}
-            className="group bg-surface-container-low p-8 rounded-2xl border border-outline-variant/5 hover:border-primary/20 transition-all"
-          >
-            <div className="text-primary-dim font-headline font-black text-4xl mb-4 opacity-20 group-hover:opacity-100 transition-opacity">
-              {mod.number}
-            </div>
-            <h3 className="text-xl font-bold font-headline mb-2">
-              {mod.title}
-            </h3>
-            <p className="text-sm text-on-surface-variant leading-relaxed">
-              {mod.description}
-            </p>
-            <div className="mt-4 flex items-center gap-2 text-xs text-on-surface-variant">
-              <span className="material-symbols-outlined text-sm">play_circle</span>
-              {mod.lessons.length} lecciones
-            </div>
-          </div>
-        ))}
-
-        {/* Trading Patterns Visualizer - Large Card */}
-        <div className="lg:col-span-2 bg-surface-container-lowest border border-outline-variant/10 rounded-2xl p-8 flex flex-col justify-between overflow-hidden relative">
-          <div className="relative z-10">
-            <h3 className="text-xl font-bold font-headline mb-6">
-              Trading Patterns Visualizer
-            </h3>
-            <div className="flex gap-3 mb-8 flex-wrap">
-              <span className="px-3 py-1 rounded-full bg-tertiary/10 text-tertiary text-xs font-bold border border-tertiary/20">
-                BULL FLAG
+        <div className="flex flex-col gap-3">
+          {masterModules.map((mod) => (
+            <div
+              key={mod.number}
+              className="group flex items-center gap-5 bg-surface-container-low/80 border border-outline-variant/10 rounded-2xl px-6 py-5 hover:border-primary/25 hover:bg-surface-container/80 transition-all"
+            >
+              <span className="text-primary/40 group-hover:text-primary font-headline font-black text-lg tabular-nums transition-colors min-w-[2rem]">
+                {mod.number}
               </span>
-              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
-                VWAP BOUNCE
+              <div className="h-5 w-px bg-outline-variant/20" />
+              <span className="material-symbols-outlined text-primary/30 group-hover:text-primary/70 text-xl transition-colors">
+                play_circle
               </span>
-              <span className="px-3 py-1 rounded-full bg-outline-variant/10 text-on-surface-variant text-xs font-bold">
-                REVERSAL
-              </span>
-              <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold border border-secondary/20">
-                GAP & GO
+              <h3 className="text-base font-semibold font-headline text-on-surface/90 group-hover:text-on-surface transition-colors">
+                Módulo {mod.number.replace(/^0/, "")} - {mod.title}
+              </h3>
+              <span className="material-symbols-outlined text-on-surface-variant/40 group-hover:text-primary/60 ml-auto text-xl transition-colors">
+                chevron_right
               </span>
             </div>
-          </div>
-          <div className="h-48 w-full flex items-end gap-1">
-            {[60, 45, 85, 30, 55, 95, 40, 70, 50, 80, 35, 90, 65, 75, 88].map(
-              (h, i) => (
-                <div
-                  key={i}
-                  className={`w-full rounded-t-sm hover:opacity-100 transition-all ${
-                    h > 70
-                      ? "bg-tertiary/50 hover:bg-tertiary"
-                      : "bg-primary/40 hover:bg-primary"
-                  }`}
-                  style={{ height: `${h}%` }}
-                />
-              )
-            )}
-          </div>
-          <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-primary/5 to-transparent" />
+          ))}
         </div>
-
-        {/* Remaining modules preview */}
-        {modules.slice(4, 6).map((mod) => (
-          <div
-            key={mod.id}
-            className="group bg-surface-container-low p-8 rounded-2xl border border-outline-variant/5 hover:border-primary/20 transition-all"
-          >
-            <div className="text-primary-dim font-headline font-black text-4xl mb-4 opacity-20 group-hover:opacity-100 transition-opacity">
-              {mod.number}
-            </div>
-            <h3 className="text-xl font-bold font-headline mb-2">
-              {mod.title}
-            </h3>
-            <p className="text-sm text-on-surface-variant leading-relaxed">
-              {mod.description}
-            </p>
-            <div className="mt-4 flex items-center gap-2 text-xs text-on-surface-variant">
-              <span className="material-symbols-outlined text-sm">play_circle</span>
-              {mod.lessons.length} lecciones
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Show remaining modules count */}
-      <div className="text-center mt-8">
-        <p className="text-on-surface-variant text-sm">
-          + {modules.length - 6} módulos más incluyendo Gestión del Riesgo,
-          Estrategias Pro, Pre-Market y Trading Journal
-        </p>
       </div>
     </section>
   );

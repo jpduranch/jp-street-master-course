@@ -1,58 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0e0e0e;
-  --color-surface: #0e0e0e;
-  --color-surface-dim: #0e0e0e;
-  --color-surface-bright: #2c2c2c;
-  --color-surface-container-lowest: #000000;
-  --color-surface-container-low: #131313;
-  --color-surface-container: #1a1919;
-  --color-surface-container-high: #201f1f;
-  --color-surface-container-highest: #262626;
-  --color-surface-variant: #262626;
-  --color-surface-tint: #ba9eff;
+  --color-background: #09090f;
+  --color-surface: #09090f;
+  --color-surface-dim: #07070c;
+  --color-surface-bright: #2a2540;
+  --color-surface-container-lowest: #04040a;
+  --color-surface-container-low: #0f0d1a;
+  --color-surface-container: #161225;
+  --color-surface-container-high: #1c1730;
+  --color-surface-container-highest: #231e3a;
+  --color-surface-variant: #231e3a;
+  --color-surface-tint: #a78bfa;
 
-  --color-primary: #ba9eff;
-  --color-primary-dim: #8455ef;
-  --color-primary-container: #ae8dff;
-  --color-primary-fixed: #ae8dff;
-  --color-primary-fixed-dim: #a27cff;
+  --color-primary: #a78bfa;
+  --color-primary-dim: #7c3aed;
+  --color-primary-container: #9370f5;
+  --color-primary-fixed: #9370f5;
+  --color-primary-fixed-dim: #8b5cf6;
 
-  --color-secondary: #d6b2fc;
-  --color-secondary-dim: #c8a5ed;
-  --color-secondary-container: #573878;
-  --color-secondary-fixed: #e3c6ff;
-  --color-secondary-fixed-dim: #d9b5ff;
+  --color-secondary: #c4b5fd;
+  --color-secondary-dim: #a78bfa;
+  --color-secondary-container: #4c1d95;
+  --color-secondary-fixed: #ddd6fe;
+  --color-secondary-fixed-dim: #c4b5fd;
 
-  --color-tertiary: #9bffce;
-  --color-tertiary-dim: #58e7ab;
-  --color-tertiary-container: #69f6b8;
-  --color-tertiary-fixed: #69f6b8;
-  --color-tertiary-fixed-dim: #58e7ab;
+  --color-tertiary: #86efac;
+  --color-tertiary-dim: #4ade80;
+  --color-tertiary-container: #22c55e;
+  --color-tertiary-fixed: #4ade80;
+  --color-tertiary-fixed-dim: #22c55e;
 
   --color-error: #ff6e84;
   --color-error-dim: #d73357;
   --color-error-container: #a70138;
 
-  --color-on-background: #ffffff;
-  --color-on-surface: #ffffff;
-  --color-on-surface-variant: #adaaaa;
-  --color-on-primary: #39008c;
-  --color-on-primary-fixed: #000000;
-  --color-on-primary-container: #2b006e;
-  --color-on-secondary: #4c2e6d;
-  --color-on-secondary-container: #e2c5ff;
-  --color-on-tertiary: #006443;
+  --color-on-background: #f0edf6;
+  --color-on-surface: #f0edf6;
+  --color-on-surface-variant: #9f9bb0;
+  --color-on-primary: #2e1065;
+  --color-on-primary-fixed: #ffffff;
+  --color-on-primary-container: #1e0a4a;
+  --color-on-secondary: #3b1a6e;
+  --color-on-secondary-container: #ddd6fe;
+  --color-on-tertiary: #065f46;
   --color-on-error: #490013;
   --color-on-error-container: #ffb2b9;
 
-  --color-outline: #777575;
-  --color-outline-variant: #494847;
+  --color-outline: #5b5672;
+  --color-outline-variant: #3b3556;
 
-  --color-inverse-surface: #fcf8f8;
-  --color-inverse-on-surface: #565554;
-  --color-inverse-primary: #6e3bd7;
+  --color-inverse-surface: #f0edf6;
+  --color-inverse-on-surface: #3b3556;
+  --color-inverse-primary: #6d28d9;
 
   --font-family-headline: "Manrope", sans-serif;
   --font-family-body: "Inter", sans-serif;
@@ -91,11 +91,11 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #262626;
+    background: #231e3a;
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #ba9eff;
+    background: #a78bfa;
   }
 }
 
@@ -112,18 +112,26 @@
 }
 
 @utility hero-gradient {
-  background: radial-gradient(circle at 50% 50%, rgba(132, 85, 239, 0.15) 0%, rgba(14, 14, 14, 0) 70%);
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(124, 58, 237, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 30% 60%, rgba(76, 29, 149, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 70% 60%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
 }
 
 @utility premium-glow {
-  box-shadow: 0 0 40px rgba(186, 158, 255, 0.08);
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.12), 0 0 100px rgba(124, 58, 237, 0.06);
 }
 
 @utility glass-nav {
-  background: rgba(14, 14, 14, 0.6);
-  backdrop-filter: blur(20px);
+  background: rgba(9, 9, 15, 0.7);
+  backdrop-filter: blur(24px);
 }
 
 @utility btn-primary-glow {
-  box-shadow: 0 0 30px rgba(186, 158, 255, 0.3);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.35), 0 0 60px rgba(124, 58, 237, 0.15);
+}
+
+@utility section-divider {
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.15), transparent);
+  height: 1px;
 }

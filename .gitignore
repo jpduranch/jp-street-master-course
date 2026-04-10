@@ -41,3 +41,5 @@ Thumbs.db
 
 # CLAUDE.md (AI assistant instructions, not needed in repo)
 CLAUDE.md
+
+.vercel
