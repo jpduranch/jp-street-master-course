@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { plans } from "../../data/mockData";
 import Icon from "../shared/Icon";
 import { Link } from "react-router-dom";
 
 export default function Pricing() {
-  const planOrder = ["free", "quarterly", "semiannual"];
+  const [billingCycle, setBillingCycle] = useState("monthly");
+  const planOrder = ["free", "vip"];
 
   return (
     <section id="pricing" className="py-24 px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-12 space-y-4">
           <h2 className="text-sm font-bold tracking-[0.3em] text-primary uppercase">
             Planes y Precios
           </h2>
@@ -16,17 +18,52 @@ export default function Pricing() {
             Elige tu plan de formación
           </p>
           <p className="text-on-surface-variant max-w-xl mx-auto">
-            Comienza gratis o accede al contenido completo con nuestros planes
-            premium.
+            Comienza gratis en la comunidad o accede al contenido premium con el
+            plan VIP.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-surface-container-highest/60 border border-surface-container-highest">
+            <button
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-6 py-2.5 rounded-full text-sm font-headline font-bold transition-all ${
+                billingCycle === "monthly"
+                  ? "bg-gradient-to-br from-primary to-primary-dim text-on-primary-fixed shadow-lg shadow-primary/20"
+                  : "text-on-surface-variant hover:text-on-surface"
+              }`}
+            >
+              Mensual
+            </button>
+            <button
+              onClick={() => setBillingCycle("quarterly")}
+              className={`relative px-6 py-2.5 rounded-full text-sm font-headline font-bold transition-all flex items-center gap-2 ${
+                billingCycle === "quarterly"
+                  ? "bg-gradient-to-br from-primary to-primary-dim text-on-primary-fixed shadow-lg shadow-primary/20"
+                  : "text-on-surface-variant hover:text-on-surface"
+              }`}
+            >
+              Trimestral
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  billingCycle === "quarterly"
+                    ? "bg-on-primary-fixed/15 text-on-primary-fixed"
+                    : "bg-tertiary/15 text-tertiary"
+                }`}
+              >
+                -20%
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {planOrder.map((planKey) => {
             const plan = plans[planKey];
+            const cycle = plan[billingCycle];
             const isPopular = plan.badge === "Popular";
-            const isBestValue = plan.badge === "Best Value";
-            const isHighlighted = isBestValue;
+            const isHighlighted = isPopular;
+            const isFree = plan.id === "free";
 
             return (
               <div
@@ -34,19 +71,11 @@ export default function Pricing() {
                 className={`relative rounded-3xl transition-transform hover:-translate-y-2 ${
                   isHighlighted
                     ? "bg-gradient-to-b from-primary/30 via-primary/10 to-primary/5 p-[1px]"
-                    : isPopular
-                    ? "bg-gradient-to-b from-secondary/30 via-secondary/10 to-secondary/5 p-[1px]"
                     : "bg-surface-container-highest p-[1px]"
                 }`}
               >
                 {plan.badge && (
-                  <div
-                    className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold z-10 ${
-                      isBestValue
-                        ? "bg-gradient-to-r from-primary to-primary-dim text-on-primary-fixed"
-                        : "bg-gradient-to-r from-secondary to-secondary-dim text-on-primary-fixed"
-                    }`}
-                  >
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold z-10 bg-gradient-to-r from-primary to-primary-dim text-on-primary-fixed">
                     {plan.badge}
                   </div>
                 )}
@@ -56,25 +85,55 @@ export default function Pricing() {
                     isHighlighted ? "ring-1 ring-primary/20" : ""
                   }`}
                 >
-                  <h3 className="text-lg font-headline font-bold mb-2">
-                    {plan.name}
-                  </h3>
-
-                  <div className="mb-6">
-                    <span className="text-5xl font-headline font-extrabold">
-                      ${plan.price}
-                    </span>
-                    {plan.period && (
-                      <span className="text-on-surface-variant text-sm ml-1">
-                        {plan.period}
-                      </span>
+                  <div className="mb-2">
+                    <h3 className="text-lg font-headline font-bold">
+                      {plan.name}
+                    </h3>
+                    {plan.tagline && (
+                      <p className="text-xs text-on-surface-variant mt-1">
+                        {plan.tagline}
+                      </p>
                     )}
-                    {plan.savings && (
-                      <div className="mt-2">
-                        <span className="text-tertiary text-xs font-bold bg-tertiary/10 px-2 py-1 rounded-full">
-                          {plan.savings}
+                  </div>
+
+                  <div className="mb-6 min-h-[110px]">
+                    {isFree ? (
+                      <>
+                        <span className="text-5xl font-headline font-extrabold">
+                          $0
                         </span>
-                      </div>
+                        <p className="text-on-surface-variant text-sm mt-2">
+                          Para siempre, sin compromiso
+                        </p>
+                      </>
+                    ) : billingCycle === "monthly" ? (
+                      <>
+                        <span className="text-5xl font-headline font-extrabold">
+                          ${cycle.price}
+                        </span>
+                        <span className="text-on-surface-variant text-sm ml-1">
+                          {cycle.period}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-5xl font-headline font-extrabold">
+                            ${cycle.monthlyEquivalent}
+                          </span>
+                          <span className="text-on-surface-variant text-sm">
+                            / mes
+                          </span>
+                        </div>
+                        <div className="mt-2 flex flex-wrap items-center gap-2">
+                          <span className="text-tertiary text-xs font-bold bg-tertiary/10 px-2 py-1 rounded-full">
+                            {cycle.savings}
+                          </span>
+                          <span className="text-on-surface-variant text-xs">
+                            ${cycle.price} cada 3 meses
+                          </span>
+                        </div>
+                      </>
                     )}
                   </div>
 
@@ -99,8 +158,6 @@ export default function Pricing() {
                     className={`w-full py-4 rounded-xl font-headline font-bold text-center transition-all block ${
                       isHighlighted
                         ? "bg-gradient-to-br from-primary to-primary-dim text-on-primary-fixed btn-primary-glow hover:scale-[1.02]"
-                        : isPopular
-                        ? "bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20"
                         : "bg-surface-container-highest text-on-surface hover:bg-surface-bright"
                     }`}
                   >

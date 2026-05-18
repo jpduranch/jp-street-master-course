@@ -22,11 +22,7 @@ export default function Sidebar({ membershipStatus }) {
 
   const displayName = profile?.full_name ?? profile?.email ?? "Usuario";
   const planLabel =
-    membershipStatus === "free"
-      ? "Free Member"
-      : membershipStatus === "quarterly"
-      ? "Pro Member"
-      : "Elite Member";
+    membershipStatus === "vip" ? "VIP Member" : "Free Member";
 
   async function handleSignOut() {
     await signOut();

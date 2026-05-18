@@ -28,7 +28,7 @@ export default function DashboardPage({ planOverride, onPlanOverride }) {
             <span className="text-on-surface-variant font-medium">
               Simular plan:
             </span>
-            {["free", "quarterly", "semiannual"].map((plan) => (
+            {["free", "vip"].map((plan) => (
               <button
                 key={plan}
                 onClick={() => onPlanOverride(plan === effectivePlan && !planOverride ? null : plan)}
